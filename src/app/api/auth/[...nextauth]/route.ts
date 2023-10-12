@@ -19,6 +19,7 @@ export const authOptions = {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'X-API-KEY': `${process.env.NEXT_PUBLIC_APP_API_KEY}`
             },
             body: JSON.stringify({
               user_name: credentials?.username,

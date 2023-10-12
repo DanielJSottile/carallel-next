@@ -5,7 +5,12 @@ import FullArticle from '../../../../components/FullArticle';
 import { authOptions } from '../../../api/auth/[...nextauth]/route';
 
 export async function generateStaticParams() {
-  const res = await fetch(`${process.env.SERVER_API_ENDPOINT}/articles`);
+  const res = await fetch(`${process.env.SERVER_API_ENDPOINT}/articles`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'X-API-KEY': `${process.env.NEXT_PUBLIC_APP_API_KEY}`
+    }
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data KK');
@@ -24,6 +29,7 @@ async function fetchArticle(id: string, accessToken: string) {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
+        'X-API-KEY': `${process.env.NEXT_PUBLIC_APP_API_KEY}`,
       },
     });
 
@@ -46,6 +52,7 @@ async function fetchRelatedArticles(id: string, accessToken: string) {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
+        'X-API-KEY': `${process.env.NEXT_PUBLIC_APP_API_KEY}`
       },
     });
 
@@ -68,6 +75,7 @@ async function fetchUserLinks(userId: string, accessToken: string) {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
+        'X-API-KEY': `${process.env.NEXT_PUBLIC_APP_API_KEY}`
       },
     });
 
@@ -89,6 +97,7 @@ async function addUserLink(userId: string, id: string, accessToken: string) {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
+        'X-API-KEY': `${process.env.NEXT_PUBLIC_APP_API_KEY}`
       },
       body: JSON.stringify({
         url: id,

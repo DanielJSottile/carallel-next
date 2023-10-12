@@ -36,6 +36,7 @@ const Registration = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-API-KEY': `${process.env.NEXT_PUBLIC_APP_API_KEY}`
         },
         body: JSON.stringify({
           first_name: firstName,
