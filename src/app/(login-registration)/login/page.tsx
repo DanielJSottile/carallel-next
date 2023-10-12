@@ -85,7 +85,7 @@ const Login = ({ searchParams }: LoginProps) => {
           <Grid container>
             <Grid item>
               <Link href="/registration" variant="body2">
-                Don&apost;t have an account? Sign Up
+                {'Don\'t have an account? Sign Up'}
               </Link>
             </Grid>
           </Grid>
