@@ -3,12 +3,11 @@ import {
   Box,
   Typography,
 } from '@mui/material';
-import RelatedArticles from '../RelatedArticles';
-import { lorumIpsum } from '../../utils/constants';
 import { Article } from '../../../types';
+import { lorumIpsum } from '../../utils/constants';
+import RelatedArticles from '../RelatedArticles';
 
 type ArticleProps = {
-  id: string;
   publishedAt: string;
   author: string;
   title: string;
@@ -18,15 +17,13 @@ type ArticleProps = {
 };
 
 const FullArticle = ({
-  id,
   publishedAt,
   author,
   title,
   urlToImage,
   description,
   news,
-}: ArticleProps) => {
-  return (
+}: ArticleProps) => (
     <Container>
       <Box
         sx={{
@@ -46,11 +43,11 @@ const FullArticle = ({
           <Typography
             sx={{ 
               padding: '1rem',
-              color: "white",
-              margin: "auto",
-              fontSize: {xs:"30px", md: '50px'},
-              fontWeight: "600",
-              textAlign: "center",
+              color: 'white',
+              margin: 'auto',
+              fontSize: {xs:'30px', md: '50px'},
+              fontWeight: '600',
+              textAlign: 'center',
               textShadow: 'black 1px 2px;' }}
           >
             {title}
@@ -101,10 +98,9 @@ const FullArticle = ({
           >{`By: ${author}`}</Typography>
         </Box>
       </Box>
-      <Typography my='40px' fontSize='1.125rem' fontFamily={'PT Serif'} lineHeight={1.75} sx={{whiteSpace: "pre-wrap"}}>{lorumIpsum}</Typography>
+      <Typography my='40px' fontSize='1.125rem' fontFamily="PT Serif" lineHeight={1.75} sx={{whiteSpace: 'pre-wrap'}}>{lorumIpsum}</Typography>
       <RelatedArticles title="Related Articles" news={news} />
     </Container>
   );
-};
 
 export default FullArticle;

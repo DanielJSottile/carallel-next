@@ -14,9 +14,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
   <html lang="en">
     <body>
       <Providers>
-        <ThemeProvider theme={theme}>
-         {children}
-        </ThemeProvider>
+        <ThemeProvider theme={theme}>{children}</ThemeProvider>
       </Providers>
     </body>
   </html>

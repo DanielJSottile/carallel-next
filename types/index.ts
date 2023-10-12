@@ -25,3 +25,10 @@ export type CustomSession = {
   };
   expires: string;
 };
+
+export type Link = {
+  link_id: string;
+  url: string;
+  user_id: string;
+  timestamp: Date;
+}

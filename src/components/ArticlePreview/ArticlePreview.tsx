@@ -4,8 +4,6 @@ import {
   CardActionArea,
   CardHeader,
   CardContent,
-  Container,
-  Box,
   Typography,
 } from '@mui/material';
 
@@ -25,8 +23,7 @@ const ArticlePreview = ({
   title,
   urlToImage,
   description,
-}: ArticlePreviewProps) => {
-  return (
+}: ArticlePreviewProps) => (
     <Card
       sx={{
         boxShadow: 3,
@@ -62,6 +59,5 @@ const ArticlePreview = ({
       </CardActionArea>
     </Card>
   );
-};
 
 export default ArticlePreview;

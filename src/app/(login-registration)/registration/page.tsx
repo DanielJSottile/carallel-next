@@ -1,26 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
-import { useRouter } from 'next/navigation'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
+  Alert,
   Avatar,
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
   Link,
   Grid,
   Box,
   Typography,
   Container,
 } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import Logo from '../../../components/Logo';
 
 const Registration = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -30,41 +28,30 @@ const Registration = () => {
   const [verifyPassword, setVerifyPassword] = useState('');
   const [error, setError] = useState('');
 
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    fetch(`http://localhost:8080/users`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        first_name: firstName,
-        last_name: lastName,
-        user_name: email,
-        password: password,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          toast.success('Successfully registered!')
-          return response.json();
-        }
-        throw new Error('Network response was not ok.');
+    try {
+      const response = await fetch('http://localhost:8080/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          user_name: email,
+          password,
+        }),
       })
-      .then((data) => {
-        // Handle the response data here
+
+      if (response.ok) {
         router.push('/');
-      })
-      .catch((error) => {
-        // Handle errors here
-        toast.error(error);
-        console.error(
-          'There has been a problem with your fetch operation:',
-          error
-        );
-      });
+      }
+    } catch (e) {
+      setError(error)
+    }
+
   };
 
   return (
@@ -118,6 +105,7 @@ const Registration = () => {
               <TextField
                 onChange={(e) => {
                   const isValid =
+                    // eslint-disable-next-line security/detect-unsafe-regex
                     /^[\w-]+(\.[\w-]+)*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$/.test(
                       e.target.value
                     );
@@ -138,7 +126,7 @@ const Registration = () => {
               <TextField
                 onChange={(e) => {
                   const isValid =
-                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/\-=|])[\S]{12,}$/.test(
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/\-=|])[\S]{12,}$/.test(
                       e.target.value
                     );
                   setIsPasswordValid(isValid);
@@ -207,6 +195,9 @@ const Registration = () => {
           </Grid>
         </Box>
       </Box>
+      {error && (
+        <Alert severity="error">{error}</Alert>
+      )}
     </Container>
   );
 };

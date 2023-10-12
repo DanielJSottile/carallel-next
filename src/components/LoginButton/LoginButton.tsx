@@ -1,7 +1,8 @@
 'use client';
-import { signOut, useSession } from 'next-auth/react';
+
 import React from 'react';
-import { Box, Typography, Button, Link } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
+import { signOut, useSession } from 'next-auth/react';
 
 const LoginButton = () => {
   const { data: session } = useSession();
@@ -13,6 +14,7 @@ const LoginButton = () => {
         <Button
           onClick={() => signOut()}
           sx={{
+            ml: 1,
             backgroundColor: 'secondary.main',
             color: 'white',
             '&:hover': {
@@ -27,9 +29,26 @@ const LoginButton = () => {
     );
   }
   return (
+    <Box>
+      <Button
+      href="/registration"
+      sx={{
+        ml: 1,
+        backgroundColor: 'secondary.main',
+        color: 'white',
+        '&:hover': {
+          backgroundColor: 'secondary.light',
+          color: 'black',
+        },
+      }}
+    >
+      Register
+    </Button>
+
     <Button
       href="/login"
       sx={{
+        ml: 1,
         backgroundColor: 'secondary.main',
         color: 'white',
         '&:hover': {
@@ -40,6 +59,9 @@ const LoginButton = () => {
     >
       Sign In
     </Button>
+    
+    </Box>
+    
   );
 };
 

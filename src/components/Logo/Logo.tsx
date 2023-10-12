@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import { Box, Typography, Link } from '@mui/material';
+import Image from 'next/image';
 
-const Logo = () => {
-  return (
+const Logo = () => (
     <Box>
       <Link
         href="/"
@@ -27,6 +26,5 @@ const Logo = () => {
       </Link>
     </Box>
   );
-};
 
 export default Logo;

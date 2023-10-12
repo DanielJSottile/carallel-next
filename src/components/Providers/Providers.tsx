@@ -7,9 +7,6 @@ type ProviderProps = {
   children: ReactNode;
 }
 
-const Providers = ({children}: ProviderProps) => {
-  return <SessionProvider>{children}</SessionProvider>
-}
-
+const Providers = ({children}: ProviderProps) => <SessionProvider>{children}</SessionProvider>
 
 export default Providers

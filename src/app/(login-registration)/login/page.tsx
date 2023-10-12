@@ -1,5 +1,6 @@
 'use client';
 
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
   Alert,
   Avatar,
@@ -12,11 +13,7 @@ import {
   Typography,
   Container,
 } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
-  getProviders,
-  LiteralUnion,
-  ClientSafeProvider,
   signIn,
 } from 'next-auth/react';
 import Logo from '../../../components/Logo';
@@ -88,13 +85,15 @@ const Login = ({ searchParams }: LoginProps) => {
           <Grid container>
             <Grid item>
               <Link href="/registration" variant="body2">
-                {"Don't have an account? Sign Up"}
+                Don&apost;t have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
         </Box>
       </Box>
-      {searchParams?.error && <Alert severity="error">{'Unauthorized: Incorrect Credentials'}</Alert>}
+      {searchParams?.error && (
+        <Alert severity="error">Unauthorized: Incorrect Credentials</Alert>
+      )}
     </Container>
   );
 };

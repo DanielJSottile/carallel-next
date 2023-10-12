@@ -1,5 +1,4 @@
 import { AppBar, Toolbar, Box, Link } from '@mui/material';
-// import Header from '../Header';
 import Image from 'next/image';
 import LoginButton from '../LoginButton';
 
